@@ -1,11 +1,11 @@
-import { NavItems } from "components";
+import { NavItems, MobileSidebar } from "components";
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { Outlet } from "react-router";
 
 export default function AdminLayout() {
   return (
     <div className="admin-layout">
-      MobileSidebar
+      <MobileSidebar />
       <aside className="w-full max-w-[270px] hidden lg:block">
         <SidebarComponent width={270} enableGestures={false}>
           <NavItems />

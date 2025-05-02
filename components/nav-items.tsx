@@ -17,29 +17,27 @@ export default function NavItems() {
       </Link>
       <div className="container">
         <nav>
-          {sidebarItems.map((item) => {
-            return (
-              <NavLink to={item.href} key={item.id}>
-                {({ isActive }) => (
-                  <div
-                    className={cn(
-                      "group nav-item",
-                      isActive && "bg-primary-100 !text-white"
-                    )}
-                  >
-                    <img
-                      src={item.icon}
-                      alt={item.label}
-                      className={`group-hover:brightness-0 size-4 group-hover:invert ${
-                        isActive ? "brightness-0 invert" : "text-dark-200"
-                      }`}
-                    />
-                    <span>{item.label}</span>
-                  </div>
-                )}
-              </NavLink>
-            );
-          })}
+          {sidebarItems.map((item) => (
+            <NavLink to={item.href} key={item.id}>
+              {({ isActive }) => (
+                <div
+                  className={cn(
+                    "group nav-item",
+                    isActive && "bg-primary-100 !text-white"
+                  )}
+                >
+                  <img
+                    src={item.icon}
+                    alt={item.label}
+                    className={`group-hover:brightness-0 size-4 group-hover:invert ${
+                      isActive ? "brightness-0 invert" : "text-dark-200"
+                    }`}
+                  />
+                  <span>{item.label}</span>
+                </div>
+              )}
+            </NavLink>
+          ))}
         </nav>
         <footer className="nav-footer">
           <img src={USER.imageUrl} alt={USER.name} />
