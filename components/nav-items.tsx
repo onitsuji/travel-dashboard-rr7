@@ -2,7 +2,11 @@ import { cn } from "lib/utils";
 import { Link, NavLink } from "react-router";
 import { sidebarItems } from "~/constants";
 
-export default function NavItems() {
+type Props = {
+  handleSidebarToggle: () => void;
+};
+
+export default function NavItems({ handleSidebarToggle }: Props) {
   const USER = {
     name: "john doe",
     email: "johndoe@doe.com",
@@ -25,6 +29,7 @@ export default function NavItems() {
                     "group nav-item",
                     isActive && "bg-primary-100 !text-white"
                   )}
+                  onClick={handleSidebarToggle}
                 >
                   <img
                     src={item.icon}
