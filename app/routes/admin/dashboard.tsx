@@ -1,3 +1,15 @@
+import { Header } from "components";
+
 export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+  const fakeUser = { name: "John Doe" };
+
+  return (
+    <main className="dashboard wrapper">
+      <Header
+        title={`welcome ${fakeUser.name ?? "Guest"}`}
+        description="Track travel trips and popular destinations to boost"
+      />
+      Page content for dashboard
+    </main>
+  );
 }

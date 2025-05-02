@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router";
 import { sidebarItems } from "~/constants";
 
 type Props = {
-  handleSidebarToggle: () => void;
+  handleSidebarToggle?: () => void;
 };
 
 export default function NavItems({ handleSidebarToggle }: Props) {
