@@ -41,7 +41,7 @@ export default function Dashboard() {
             lastMonthCount={dashboardStats.tripsCreated.previous}
           />
           <StatsCard
-            headerTitle="User Role"
+            headerTitle="Active Users"
             total={dashboardStats.userRole.total}
             currentMonthCount={dashboardStats.userRole.current}
             lastMonthCount={dashboardStats.userRole.previous}
