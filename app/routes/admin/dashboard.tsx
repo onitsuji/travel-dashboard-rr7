@@ -30,7 +30,22 @@ export default function Dashboard() {
           />
         </div>
       </section>
-      <TripCard />
+      <section className="container">
+        <h1 className="text-xl font-semibold text-dark-100">Created Trips</h1>
+        <div className="trip-grid">
+          {allTrips.slice(0, 4).map((trip) => (
+            <TripCard
+              key={trip.id}
+              id={trip.id.toString()}
+              name={trip.name}
+              imageUrl={trip.imageUrls[0]}
+              location={trip.itinerary?.[0].location ?? ""}
+              tags={trip.tags}
+              price={trip.estimatedPrice}
+            />
+          ))}
+        </div>
+      </section>
       Page content for dashboard
     </main>
   );
