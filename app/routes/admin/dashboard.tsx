@@ -1,25 +1,7 @@
 import { Header, StatsCard, TripCard } from "components";
+import { fakeUser, dashboardStats, allTrips } from "~/constants/";
 
 export default function Dashboard() {
-  const fakeUser = { name: "John Doe" };
-  const dashboardStats = {
-    totalUsers: 12540,
-    usersJoined: {
-      current: 219,
-      previous: 123,
-    },
-    totalTrips: 4209,
-    tripsCreated: {
-      current: 101,
-      previous: 227,
-    },
-    userRole: {
-      total: 53,
-      current: 22,
-      previous: 5,
-    },
-  };
-
   return (
     <main className="dashboard wrapper">
       <Header
