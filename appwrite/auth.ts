@@ -36,7 +36,7 @@ export const storeUserData = async () => {
         email: user.email,
         name: user.name,
         imageUrl: profilePicture,
-        joinedAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
       }
     );
 
@@ -64,7 +64,7 @@ const getGooglePicture = async (accessToken: string) => {
 
 export const loginWithGoogle = async () => {
   try {
-    account.createOAuth2Session(
+    const user = account.createOAuth2Session(
       OAuthProvider.Google,
       `${window.location.origin}/`,
       `${window.location.origin}/404`
