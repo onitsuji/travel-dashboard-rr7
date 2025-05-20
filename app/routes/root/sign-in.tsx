@@ -11,6 +11,7 @@ export async function clientLoader() {
     if (!user.$id) {
       return redirect("/sign-in");
     } else {
+      console.log("we have found a user, redirecting to dashboard");
       return redirect("/dashboard");
     }
   } catch (e) {
