@@ -1,5 +1,6 @@
+import { logoutUser } from "appwrite/auth";
 import { cn } from "lib/utils";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLoaderData, useNavigate } from "react-router";
 import { sidebarItems } from "~/constants";
 
 type Props = {
@@ -7,12 +8,15 @@ type Props = {
 };
 
 export default function NavItems({ handleSidebarToggle }: Props) {
-  const USER = {
-    name: "john doe",
-    email: "johndoe@doe.com",
-    imageUrl: "/assets/images/david.webp",
-  };
+  // Grab loader data from nearest loader which is dashboard
+  // Dashboard loader gets users
+  const user: BaseUser = useLoaderData();
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await logoutUser();
+    navigate("/sign-in");
+  };
   return (
     <section className="nav-items">
       <Link to="/" className="link-logo">
@@ -45,17 +49,16 @@ export default function NavItems({ handleSidebarToggle }: Props) {
           ))}
         </nav>
         <footer className="nav-footer">
-          <img src={USER.imageUrl} alt={USER.name} />
+          <img
+            src={user?.imageUrl || `/assets/images/david.webp`}
+            alt={user.name}
+            referrerPolicy="no-referrer"
+          />
           <article>
-            <h2>{USER.name}</h2>
-            <p>{USER.email}</p>
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
           </article>
-          <button
-            onClick={() => {
-              console.log("Log out");
-            }}
-            className="cursor-pointer"
-          >
+          <button onClick={handleLogout} className="cursor-pointer">
             <img
               src="/assets/icons/logout.svg"
               alt="logout"
