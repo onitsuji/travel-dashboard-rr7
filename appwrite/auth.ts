@@ -92,7 +92,7 @@ export const getUser = async () => {
       appwriteConfig.usersCollectionId,
       [
         Query.equal("accountId", user.$id),
-        Query.select(["name", "email", "imageUrl", "joinedAt", "accountId"]),
+        Query.select(["name", "email", "imageUrl", "createdAt", "accountId"]),
       ]
     );
 

@@ -1,11 +1,26 @@
+import { account } from "appwrite/appwrite";
+import { getExistingUser, getUser } from "appwrite/auth";
 import { Header, StatsCard, TripCard } from "components";
+import { useLoaderData } from "react-router";
 import { fakeUser, dashboardStats, allTrips } from "~/constants/";
+import type { Route } from "./+types/dashboard";
 
-export default function Dashboard() {
+export async function clientLoader() {
+  try {
+    return await getUser();
+  } catch (e) {
+    console.log("e");
+  }
+}
+
+// RR7 allows us to extract specific route props
+// Get loader data and pass down
+export default function Dashboard({ loaderData }: Route.ComponentProps) {
+  console.log(loaderData);
   return (
     <main className="dashboard wrapper">
       <Header
-        title={`welcome ${fakeUser.name ?? "Guest"}`}
+        title={`Welcome ${loaderData?.name ?? "Guest"}`}
         description="Track travel trips and popular destinations to boost"
       />
       <section className="flex flex-col gap-6">

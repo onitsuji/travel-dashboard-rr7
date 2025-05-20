@@ -8,8 +8,8 @@ type Props = {
 };
 
 export default function NavItems({ handleSidebarToggle }: Props) {
-  // Grab loader data from nearest loader which is dashboard
-  // Dashboard loader gets users
+  // Grab loader data from nearest loader which is Admin Layout
+  // This returns our user data
   const user: BaseUser = useLoaderData();
   const navigate = useNavigate();
 
