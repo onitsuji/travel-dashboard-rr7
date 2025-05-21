@@ -1,4 +1,5 @@
 import type { AxisModel } from "@syncfusion/ej2-react-charts";
+import { formatDate } from "lib/utils";
 
 export const sidebarItems = [
   {
@@ -200,29 +201,29 @@ export const allTrips = [
 export const users = [
   {
     id: 1,
-    name: "Alice Johnson",
-    email: "alice.johnson@example.com",
-    imageurl: "https://example.com/images/alice.jpg",
-    createdAt: "2025-05-21T10:15:00Z",
-    iteniaryCreated: 2,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    imageUrl: "/assets/images/david.webp",
+    createdAt: formatDate("2025-01-01"),
+    itineraryCreated: 10,
     status: "user",
   },
   {
     id: 2,
-    name: "Bob Smith",
-    email: "bob.smith@example.com",
-    imageurl: "https://example.com/images/bob.jpg",
-    createdAt: "2025-05-20T14:30:00Z",
-    iteniaryCreated: 5,
-    status: "admin",
+    name: "Jane Smith",
+    email: "jane.smith@example.com",
+    imageUrl: "/assets/images/david.webp",
+    createdAt: formatDate("2025-01-02"),
+    itineraryCreated: 4,
+    status: "user",
   },
   {
     id: 3,
-    name: "Carol Lee",
-    email: "carol.lee@example.com",
-    imageurl: "https://example.com/images/carol.jpg",
-    createdAt: "2025-05-19T09:45:00Z",
-    iteniaryCreated: 1,
-    status: "user",
+    name: "John Smith",
+    email: "john.smith@example.com",
+    imageUrl: "/assets/images/david.webp",
+    createdAt: formatDate("2025-01-03"),
+    itineraryCreated: 8,
+    status: "admin",
   },
 ];
