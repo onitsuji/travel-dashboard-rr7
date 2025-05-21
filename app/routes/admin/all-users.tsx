@@ -5,7 +5,7 @@ import {
   GridComponent,
 } from "@syncfusion/ej2-react-grids";
 // import { users } from "../../constants";
-import { cn } from "lib/utils";
+import { cn, formatDate } from "lib/utils";
 import { getAllUsers } from "appwrite/auth";
 import type { Route } from "./+types/all-users";
 
@@ -51,6 +51,7 @@ export default function AllUsers({ loaderData }: Route.ComponentProps) {
             headerText="Created"
             width="150"
             textAlign="Left"
+            template={(props: UserData) => formatDate(props.createdAt)}
           />
           <ColumnDirective
             field="itineraryCreated"
