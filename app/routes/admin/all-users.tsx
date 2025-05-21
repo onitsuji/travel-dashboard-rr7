@@ -4,17 +4,25 @@ import {
   ColumnsDirective,
   GridComponent,
 } from "@syncfusion/ej2-react-grids";
-import { users } from "../../constants";
+// import { users } from "../../constants";
 import { cn } from "lib/utils";
+import { getAllUsers } from "appwrite/auth";
+import type { Route } from "./+types/all-users";
 
-export default function AllUsers() {
+export async function loader() {
+  const users = await getAllUsers();
+
+  return users;
+}
+
+export default function AllUsers({ loaderData }: Route.ComponentProps) {
   return (
     <main className="all-users wrapper">
       <Header
         title="Manage Users"
         description="Filter, sort and access user details"
       />
-      <GridComponent dataSource={users} gridLines="None">
+      <GridComponent dataSource={loaderData} gridLines="None">
         <ColumnsDirective>
           <ColumnDirective
             field="name"
