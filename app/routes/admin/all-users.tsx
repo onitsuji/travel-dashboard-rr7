@@ -1,13 +1,28 @@
 import { Header } from "components";
+import {
+  ColumnDirective,
+  ColumnsDirective,
+  GridComponent,
+} from "@syncfusion/ej2-react-grids";
+import { users } from "../../constants";
 
 export default function AllUsers() {
   return (
-    <main className="dashboard wrapper">
+    <main className="all-users wrapper">
       <Header
-        title="Trips page for all your users"
-        description="Track all users trips and activity"
+        title="Manage Users"
+        description="Filter, sort and access user details"
       />
-      Page content for users table
+      <GridComponent dataSource={users} gridLines="None">
+        <ColumnsDirective>
+          <ColumnDirective
+            field="name"
+            headerText="Name"
+            width="200"
+            textAlign="Left"
+          />
+        </ColumnsDirective>
+      </GridComponent>
     </main>
   );
 }

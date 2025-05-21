@@ -1,8 +1,6 @@
-import { account } from "appwrite/appwrite";
-import { getExistingUser, getUser } from "appwrite/auth";
+import { getUser } from "appwrite/auth";
 import { Header, StatsCard, TripCard } from "components";
-import { useLoaderData } from "react-router";
-import { fakeUser, dashboardStats, allTrips } from "~/constants/";
+import { dashboardStats, allTrips } from "~/constants/";
 import type { Route } from "./+types/dashboard";
 
 export async function clientLoader() {

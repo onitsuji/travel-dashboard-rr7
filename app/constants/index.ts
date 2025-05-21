@@ -141,7 +141,6 @@ export const RIGHT_CONFETTI = {
   origin: { x: 1, y: 1 },
 };
 
-export const fakeUser = { name: "John Doe" };
 export const dashboardStats = {
   totalUsers: 12540,
   usersJoined: {
@@ -195,5 +194,35 @@ export const allTrips = [
     tags: ["Historical", "Culture"],
     travelStyle: "Friends",
     estimatedPrice: "$4,000",
+  },
+];
+
+export const users = [
+  {
+    id: 1,
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    imageurl: "https://example.com/images/alice.jpg",
+    createdAt: "2025-05-21T10:15:00Z",
+    iteniaryCreated: 2,
+    status: "user",
+  },
+  {
+    id: 2,
+    name: "Bob Smith",
+    email: "bob.smith@example.com",
+    imageurl: "https://example.com/images/bob.jpg",
+    createdAt: "2025-05-20T14:30:00Z",
+    iteniaryCreated: 5,
+    status: "admin",
+  },
+  {
+    id: 3,
+    name: "Carol Lee",
+    email: "carol.lee@example.com",
+    imageurl: "https://example.com/images/carol.jpg",
+    createdAt: "2025-05-19T09:45:00Z",
+    iteniaryCreated: 1,
+    status: "user",
   },
 ];
