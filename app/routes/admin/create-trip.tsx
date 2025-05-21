@@ -1,6 +1,8 @@
 import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "components";
 import type { Route } from "./+types/create-trip";
+import { comboBoxItems, selectItems } from "~/constants";
+import { formatKey } from "lib/utils";
 
 export async function loader() {
   try {
@@ -25,7 +27,9 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
     value: country.value,
   }));
 
-  const handleSumbit = async () => {};
+  const handleSumbit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 
   const handleChange = (key: keyof TripFormData, value: string | number) => {};
   return (
@@ -34,7 +38,7 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
         title="Add a new trip"
         description="View and edit your ai generated travel plans"
       />
-      <section className="mt-2.5 wrapper-md ">
+      <section className="mt-2.5 wrapper-md">
         <form action="" className="trip-form" onSubmit={handleSumbit}>
           <div>
             <label htmlFor="country">Country</label>
@@ -65,6 +69,51 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
               }}
             />
           </div>
+          <div>
+            <label htmlFor="duration">Duration</label>
+            <input
+              type="text"
+              id="duration"
+              name="duration"
+              placeholder="Enter a number of days"
+              className="form-input placeholder:text-gray-100"
+              onChange={(e) =>
+                handleChange("duration", Number(e.currentTarget.value))
+              }
+            />
+          </div>
+          {selectItems.map((item) => (
+            <div key={item}>
+              <label htmlFor={item}>{formatKey(item)}</label>
+              <ComboBoxComponent
+                id={item}
+                dataSource={comboBoxItems[item].map((item) => ({
+                  text: item,
+                  value: item,
+                }))}
+                fields={{ text: "text", value: "value" }}
+                placeholder={`Select ${formatKey(item)}`}
+                change={(event: { value: string | undefined }) => {
+                  if (event.value) {
+                    handleChange(item, event.value);
+                  }
+                }}
+                allowFiltering
+                filtering={(e) => {
+                  const query = e.text.toLowerCase();
+                  e.updateData(
+                    comboBoxItems[item]
+                      .filter((item) => item.toLowerCase().includes(query))
+                      .map((item) => ({
+                        text: item,
+                        value: item,
+                      }))
+                  );
+                }}
+                className="combo-box"
+              />
+            </div>
+          ))}
         </form>
       </section>
     </main>
