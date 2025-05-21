@@ -2,7 +2,7 @@ import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "components";
 import type { Route } from "./+types/create-trip";
 import { comboBoxItems, selectItems } from "~/constants";
-import { formatKey } from "lib/utils";
+import { cn, formatKey } from "lib/utils";
 import {
   LayerDirective,
   LayersDirective,
@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { world_map } from "~/constants/world_map";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
+import { account } from "appwrite/appwrite";
 
 export async function loader() {
   try {
@@ -74,6 +75,26 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
       setError("All fields must be filled");
       setLoading(false);
       return;
+    }
+
+    if (formData.duration < 1 || formData.duration > 10) {
+      setError(
+        "Duration must be between 1 and 10 days for accurate generation."
+      );
+      setLoading(false);
+    }
+
+    const user = await account.get();
+
+    if (!user.$id) {
+      console.log("User is not authenticated");
+      setLoading(false);
+      return;
+    }
+
+    try {
+    } catch (e) {
+      console.log("Create form submit error: ", e);
     }
   };
 
@@ -199,7 +220,7 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
                 src={`/assets/icons/${
                   loading ? "loader.svg" : "magic-star.svg"
                 }`}
-                className="size-5"
+                className={cn("size-5", { "animate-spin": loading })}
               />
               <span className="p-16-semibold text-white">
                 {loading ? "Generating..." : "Generate Trip"}
