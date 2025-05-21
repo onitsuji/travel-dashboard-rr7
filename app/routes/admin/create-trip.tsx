@@ -10,6 +10,7 @@ import {
 } from "@syncfusion/ej2-react-maps";
 import { useState } from "react";
 import { world_map } from "~/constants/world_map";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 export async function loader() {
   try {
@@ -39,6 +40,9 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
     groupType: "",
   });
 
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
   const comboBoxData = countries.map((country) => ({
     text: country.name,
     value: country.value,
@@ -54,11 +58,27 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
     },
   ];
 
-  const handleSumbit = async (e: React.FormEvent) => {
+  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
+
+    if (
+      !formData.country ||
+      !formData.travelStyle ||
+      !formData.budget ||
+      !formData.duration ||
+      !formData.groupType ||
+      !formData.interest
+    ) {
+      setError("All fields must be filled");
+      setLoading(false);
+      return;
+    }
   };
 
   const handleChange = (key: keyof TripFormData, value: string | number) => {
+    setError(null);
     setFormData({
       ...formData,
       [key]: value,
@@ -163,6 +183,29 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
               </LayersDirective>
             </MapsComponent>
           </div>
+          <div className="bg-gray-200 h-px w-full" />
+          {error && (
+            <div className="error">
+              <p>{error}</p>
+            </div>
+          )}
+          <footer className="px-6 w-full">
+            <ButtonComponent
+              type="submit"
+              className="button-class !h-12 !w-full"
+              disabled={loading}
+            >
+              <img
+                src={`/assets/icons/${
+                  loading ? "loader.svg" : "magic-star.svg"
+                }`}
+                className="size-5"
+              />
+              <span className="p-16-semibold text-white">
+                {loading ? "Generating..." : "Generate Trip"}
+              </span>
+            </ButtonComponent>
+          </footer>
         </form>
       </section>
     </main>
