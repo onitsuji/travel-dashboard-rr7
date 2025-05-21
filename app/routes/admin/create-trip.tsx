@@ -49,6 +49,20 @@ export default function CreateTrip({ loaderData }: Route.ComponentProps) {
                   handleChange("country", event.value);
                 }
               }}
+              allowFiltering
+              filtering={(e) => {
+                const query = e.text.toLowerCase();
+                e.updateData(
+                  countries
+                    .filter((country) =>
+                      country.name.toLowerCase().includes(query)
+                    )
+                    .map((country) => ({
+                      text: country.name,
+                      value: country.value,
+                    }))
+                );
+              }}
             />
           </div>
         </form>
